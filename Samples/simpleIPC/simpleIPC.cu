@@ -126,6 +126,9 @@ static void childProcess(int id) {
     checkCudaErrors(cudaIpcCloseMemHandle(ptrs[i]));
     checkCudaErrors(cudaIpcOpenEventHandle(
         &event, *(cudaIpcEventHandle_t *)&shm->eventHandle[i]));
+    cudaPointerAttributes attributes;
+    cudaPointerGetAttributes(&attributes, ptr);
+    std::cout<< "check device " << attributes.device << " check device pointer   " << attributes.devicePointer<<std::endl;
 
     ptrs.push_back(ptr);
     events.push_back(event);
