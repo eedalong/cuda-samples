@@ -290,7 +290,7 @@ static void parentProcess(char *app) {
     cudaIpcOpenMemHandle(&received_ptr, *(cudaIpcMemHandle_t *)&shm->memHandle[i], cudaIpcMemLazyEnablePeerAccess);
     cudaPointerAttributes attributes;
     cudaPointerGetAttributes(&attributes, received_ptr);
-    printf("Tensor from device %d can be accessed by %d \n", attributes.device, attributes.devicePointer);
+    printf("Open And Open MemHanle In The Same Process, Tensor from device %d can be accessed by %d \n", attributes.device, attributes.devicePointer);
 
     ptrs.push_back(ptr);
     events.push_back(event);
