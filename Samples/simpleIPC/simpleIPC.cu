@@ -124,7 +124,6 @@ static void childProcess(int id) {
     checkCudaErrors(
         cudaIpcOpenMemHandle(&ptr, *(cudaIpcMemHandle_t *)&shm->memHandle[i],
                              cudaIpcMemLazyEnablePeerAccess));
-    checkCudaErrors(cudaIpcCloseMemHandle(ptrs[i]));
     checkCudaErrors(cudaIpcOpenEventHandle(
         &event, *(cudaIpcEventHandle_t *)&shm->eventHandle[i]));
     cudaPointerAttributes attributes;
