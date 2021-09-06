@@ -32,6 +32,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
+#include <iostream>
 #include "helper_cuda.h"
 #include "helper_multiprocess.h"
 static const char shmName[] = "simpleIPCshm";
