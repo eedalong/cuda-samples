@@ -128,11 +128,6 @@ static void childProcess(int id) {
         &event, *(cudaIpcEventHandle_t *)&shm->eventHandle[i]));
     cudaPointerAttributes attributes;
     cudaPointerGetAttributes(&attributes, ptr);
-    char *s = (char*)&shm->memHandle[i];
-    for(int index = 0; index < CUDA_IPC_HANDLE_SIZE; index++){
-      std::cout<<s[index];
-    }
-    std::cout<<std::endl;
 
     std::cout<< "check device " << attributes.device << " check device pointer   " << attributes.devicePointer<<std::endl;
 
@@ -294,6 +289,11 @@ static void parentProcess(char *app) {
 
     void *received_ptr;
     cudaIpcOpenMemHandle(&received_ptr, *(cudaIpcMemHandle_t *)&shm->memHandle[i], cudaIpcMemLazyEnablePeerAccess);
+    char *s = (char*)&shm->memHandle[i];
+    for(int index = 0; index < CUDA_IPC_HANDLE_SIZE; index++){
+      std::cout<<s[index];
+    }
+    std::cout<<std::endl;
     cudaPointerAttributes attributes;
     cudaPointerGetAttributes(&attributes, received_ptr);
     printf("Open And Open MemHanle In The Same Process, Tensor from device %d can be accessed by %d \n", attributes.device, attributes.devicePointer);
