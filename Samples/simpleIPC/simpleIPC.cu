@@ -130,7 +130,11 @@ static void childProcess(int id) {
     cudaPointerGetAttributes(&attributes, ptr);
     char s[CUDA_IPC_HANDLE_SIZE];
     memcpy((void*)&s, (void*)(char*)&shm->eventHandle[i], CUDA_IPC_HANDLE_SIZE);
-    std::cout<<s<<std::endl;
+    for(int index = 0; index < CUDA_IPC_HANDLE_SIZE; index++){
+      std::cout<<s;
+    }
+    std::cout<<std::endl;
+    
     std::cout<< "check device " << attributes.device << " check device pointer   " << attributes.devicePointer<<std::endl;
 
     ptrs.push_back(ptr);
